@@ -88,7 +88,7 @@ function librepost_test_login($username,$password,$redirect) {
 	 
 }
 function librepost_check_login() {
-	 if($_SESSION["librepost_login"] == 1 && isset($_SESSION["librepost_login_uname"]))) {
+	 if($_SESSION["librepost_login"] == 1 && isset($_SESSION["librepost_login_uname"])) {
 	 return true;
 	 }
 	 return false;
@@ -103,7 +103,7 @@ function librepost_get_map($display_all = true,$number = null) {
 	 <?php
 	 }
 }
-function librepost_add_post($title,$desc,$address
+
 function librepost_version() {
 	 return "Librepost 1.0.0-1 by Heng Ye";
 }
