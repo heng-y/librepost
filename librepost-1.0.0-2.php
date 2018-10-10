@@ -39,10 +39,10 @@ function librepost_add_user($username,$password) {
 	
 	 $stmt1 = mysqli_prepare($GLOBALS['conn'],"SELECT * FROM users WHERE UNAME = ?;");
 	 mysqli_stmt_bind_param($stmt1,"s",$username);
-	 $result1 = mysqli_stmt_execute($stmt);
+	 $result1 = mysqli_stmt_execute($stmt1);
 	 if(!$result1)
 		die("Librepost: query error<br>");
-	 $true_result = mysqli_stmt_get_result($stmt);
+	 $true_result = mysqli_stmt_get_result($stmt1);
 	 if(mysqli_num_rows($true_result) >= 1)
 	 {
 	 echo "Username already taken.";
