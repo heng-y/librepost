@@ -61,7 +61,7 @@ function librepost_add_user($username,$password) {
 }
 function librepost_test_login($username,$password,$redirect) {
 	 $hash = password_hash($password,PASSWORD_DEFAULT);
-	 $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT * FROM USERS WHERE UNAME = ?;");
+	 $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT * FROM users WHERE UNAME = ?;");
 	 mysqli_stmt_bind_param($stmt,"s",$username);
 	 $result = mysqli_stmt_execute($stmt);
 	 if(!$result)
