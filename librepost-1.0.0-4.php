@@ -83,6 +83,7 @@ function librepost_test_login($username,$password,$redirect) {
 	      session_regenerate_id();
 	      $_SESSION["librepost_login"] = 1;
 	      $_SESSION["librepost_login_uname"] = $username;
+	      $_SESSION["librepost_login_uid"] = $row["ID"];
 	      header("Location: " . $redirect);
 	   } else {
 	   return "Password incorrect.";
@@ -123,8 +124,8 @@ if(empty($title) || empty($description) || empty($address)){
 	$formatted_address = isset($response['results'][0]['formatted_address']) ? $response['results'][0]['formatted_address'] : "";
          
 //	echo $lati . ", " . $longi;
-	$stmt = mysqli_prepare($GLOBALS['conn'],"INSERT INTO POSTS(TITLE,DESCRIPTION,LAT,LNG,ADDRESS) VALUES (?,?,?,?,?);");
-	mysqli_stmt_bind_param($stmt,"sssss",$title,$description,$lati,$longi,$formatted_address);
+	$stmt = mysqli_prepare($GLOBALS['conn'],"INSERT INTO POSTS(TITLE,DESCRIPTION,LAT,LNG,ADDRESS) VALUES (?,?,?,?,?,?);");
+	mysqli_stmt_bind_param($stmt,"ssssss",$title,$description,$lati,$longi,$formatted_address,$_SESSION["librepost_login_uid"]);
 	if(!mysqli_stmt_execute($stmt))
 	die("Librepost: query error<br>");
 header("location: " . $redirect);
